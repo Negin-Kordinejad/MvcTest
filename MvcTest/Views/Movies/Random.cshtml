@@ -1,0 +1,24 @@
+﻿@model MvcTest.ViewModels.RandomMovieModel
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* here is Comment*@
+<h2>Random</h2>
+
+@{ var ClassName = Model.Custumer.Count > 5 ? "alert-danger" : null; }
+
+<h1 class=@ClassName>@Model.Movie.Name</h1>
+@if (Model.Custumer.Count == 0)
+{<text> NO Customer</text> }
+else
+{
+<ul>
+    @foreach (var C in Model.Custumer)
+    {
+        <li>@C.Name</li>
+
+    }
+</ul>
+}

@@ -1,0 +1,26 @@
+﻿@model MvcTest.Models.Meal
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout</title>
+</head>
+<body>
+    <div>
+        <h1>Name : @Model.Name </h1>
+        <p>
+            Calories:@Model.Calories
+        </p>
+        <ol class=" bg-success">
+            @foreach (var i in Model.Ingredients)
+            {<li>@i </li>}
+        </ol>
+</div>
+</body>
+</html>

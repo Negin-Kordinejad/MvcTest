@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MvcTest.ViewModels.FullCustomerDataModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{ <p></p>
+    <p>@Html.ActionLink("Add New Customer", "Edit", "Customer",new {Id=0 }, null)</p>
+    <table class="table table-bordered table-hover">
+        <thead>
+
+            <tr>
+                <th>Customer</th>
+                <th>DiscountRate</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customer", new { id = customer.Id }, null)</td>
+                    @if (customer.MembershipType != null )
+                    {
+                        <td>@customer.MembershipType.DiscountRate</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

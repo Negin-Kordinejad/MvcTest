@@ -1,0 +1,59 @@
+﻿@model MvcTest.Models.Address
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>>Create a new address</title>
+</head>
+<body>
+    <div>
+      
+        @*<form action="/address/save" method="post">
+            @Html.AntiForgeryToken()
+            <label asp-for="Street">Street:</label>
+            <input type="text" asp-for="Street" value=@Model.Street />
+            <label asp-for="City">City:</label>
+            <input type="text" asp-for="City" value=@Model.City />
+            <input type="submit" value="Submit" />
+        </form>*@
+
+        @using (Html.BeginForm("save", "address", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr/>
+
+                <div class="form-group">
+                     @Html.LabelFor(model => Model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => Model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => Model.Street, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                     @Html.LabelFor(model => Model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => Model.City, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => Model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>

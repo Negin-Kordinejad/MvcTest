@@ -1,0 +1,17 @@
+﻿@model MvcTest.Models.Movie
+
+@{
+    ViewBag.Title = "Movieoparation";
+}
+
+<h2>Movieparation</h2>
+@using (Html.BeginForm("Create","Movies",FormMethod.Post))
+{ 
+<div class="form-group">
+    @Html.LabelFor(model => Model.Name)
+    @Html.TextBoxFor(model => Model.Name, new { @class = "form-Control" })
+    <button type="submit" class="btn-primary">Save</button>
+    @Html.HiddenFor(model => Model.Id)
+</div>
+
+}

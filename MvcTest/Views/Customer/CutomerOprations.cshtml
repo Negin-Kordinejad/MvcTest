@@ -1,0 +1,39 @@
+﻿@model MvcTest.ViewModels.NewCustomerViewModel
+
+@{
+    ViewBag.Title = "CutomerOprations";
+}
+
+<h2>CutomerOprations</h2>
+
+@using (@Html.BeginForm("Save", "Customer"))
+{
+    @Html.ValidationSummary(true, "please fix the folowing errors");
+    <div class="form-group">
+        @Html.LabelFor(m => Model.customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(m => Model.customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => Model.customer.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => Model.customer.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(m => Model.customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => Model.customer.BirthDate)
+    </div>
+    <div class="form-group">
+        @Html.DropDownListFor(m => Model.customer.MembershipTypeId, new SelectList(Model.MtType, "Id", "Name"), "Select One", new { @class = "form - control" })
+        @Html.ValidationMessageFor(m => Model.customer.MembershipTypeId)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => Model.customer.IsSubscribedToNewsletter) Subscribed
+            @Html.ValidationMessageFor(m => Model.customer.IsSubscribedToNewsletter)
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary"></button>
+    @Html.HiddenFor(m => Model.customer.Id)
+    @Html.AntiForgeryToken()
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

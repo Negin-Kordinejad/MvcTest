@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MvcTest.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movie</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Name</td>
+            </tr>
+        }
+        <tr><td>@Html.ActionLink("Add New", "Movieoparation")</td></tr>
+    </tbody>
+</table>
+
